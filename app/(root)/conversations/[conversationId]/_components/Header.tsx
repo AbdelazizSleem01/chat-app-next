@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import { CircleArrowLeft, Settings } from 'lucide-react' // Removed User
 import Link from 'next/link'
 import React from 'react'
+import { unknown } from 'zod'
 
 type Props = {
     imageUrl?: string,
@@ -16,26 +17,25 @@ type Props = {
         onClick: () => void
     }[]
 }
-
-const Header = ({ imageUrl, name, options }: Props) => {
+const Header = ({ imageUrl, name = "Unknown", options }: Props) => {
     return (
-        <div className='flex'>
-            <Card className='w-full relative flex items-center justify-between p-2 rounded-lg'>
-                <div className='flex items-center gap-2'>
-                    <Link href={"/conversations"} className='block lg:hidden'>
+        <div className="flex">
+            <Card className="w-full relative flex items-center justify-between p-2 rounded-lg">
+                <div className="flex items-center gap-2">
+                    <Link href={"/conversations"} className="block lg:hidden">
                         <CircleArrowLeft />
                     </Link>
-                    <Avatar className='h-9 w-9'>
-                        <AvatarImage src={imageUrl} alt='avatar' />
+                    <Avatar className="h-9 w-9">
+                        <AvatarImage src={imageUrl} alt="avatar" />
                         <AvatarFallback>
                             {name.substring(0, 1)}
                         </AvatarFallback>
                     </Avatar>
-                    <h3 className='font-semibold'>
-                        {name}
+                    <h3 className="font-semibold">
+                        {name || "Unknown"}
                     </h3>
-                    <div className='absolute right-2 gap-2'>
-                        {options ?
+                    <div className="absolute right-2 gap-2">
+                        {options ? (
                             <DropdownMenu>
                                 <DropdownMenuTrigger>
                                     <Button size={"icon"} variant={"secondary"}>
@@ -48,21 +48,22 @@ const Header = ({ imageUrl, name, options }: Props) => {
                                             <DropdownMenuItem
                                                 key={id}
                                                 onClick={option.onClick}
-                                                className={cn("font-semibold", { "text-destructive": option.destructive })}
+                                                className={cn("font-semibold", {
+                                                    "text-destructive": option.destructive,
+                                                })}
                                             >
                                                 {option.label}
                                             </DropdownMenuItem>
-                                        )
+                                        );
                                     })}
                                 </DropdownMenuContent>
                             </DropdownMenu>
-                            : null
-                        }
+                        ) : null}
                     </div>
                 </div>
             </Card>
         </div>
-    )
-}
+    );
+};
 
 export default Header;
