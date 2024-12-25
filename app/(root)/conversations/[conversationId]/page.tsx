@@ -72,7 +72,23 @@ const ConversationPage = ({ params: { conversationId } }: Props) => {
           },
         ]}
       />
-      <Body members={conversation.isGroup ? conversation.otherMembers ? conversation.otherMembers : [] : conversation.otherMember ? [conversation.otherMember] : []} />
+      <Body
+        members={
+          conversation.isGroup
+            ? conversation.otherMembers?.map(member => ({
+              ...member,
+              username: member.username || "Unknown User", // Provide fallback value
+            })) || []
+            : conversation.otherMember
+              ? [
+                {
+                  ...conversation.otherMember,
+                  username: conversation.otherMember.username || "Unknown User", // Provide fallback value
+                },
+              ]
+              : []
+        }
+      />
       <ChatInput />
     </ConversationContainer>
   )
