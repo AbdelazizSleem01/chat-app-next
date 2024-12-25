@@ -9,10 +9,10 @@ import DMconversationItem from './_components/DMconversationItem'
 import GroupConversationItem from './_components/GroupConversationItem'
 import CreateGroupDialog from './_components/CreateGroupDialog'
 
-type Props = React.PropsWithChildren<{}>
+// Changed {} to unknown
+type Props = React.PropsWithChildren<unknown>
 
 const ConversationsLayout = ({ children }: Props) => {
-
   const conversations = useQuery(api.conversations.get)
   const isLoading = !conversations;
   const hasConversations = Array.isArray(conversations) && conversations.length > 0;
@@ -33,7 +33,7 @@ const ConversationsLayout = ({ children }: Props) => {
                 name={conversation.conversation.name || ""}
                 lastMessageContent={conversation.lastMessage?.content}
                 lastMessageSender={conversation.lastMessage?.sender}
-                unseenCount= {conversation.unSeenCount}
+                unseenCount={conversation.unSeenCount}
               />
             ) : (
               <DMconversationItem
@@ -43,8 +43,7 @@ const ConversationsLayout = ({ children }: Props) => {
                 imageUrl={conversation.otherMember?.imageUrl || ""}
                 lastMessageContent={conversation.lastMessage?.content}
                 lastMessageSender={conversation.lastMessage?.sender}
-                unseenCount= {conversation.unSeenCount}
-
+                unseenCount={conversation.unSeenCount}
               />
             )
           ))
@@ -59,4 +58,4 @@ const ConversationsLayout = ({ children }: Props) => {
   )
 }
 
-export default ConversationsLayout
+export default ConversationsLayout;

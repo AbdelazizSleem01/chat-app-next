@@ -37,7 +37,7 @@ const CreateGroupDialog = () => {
 
   const unSelectedFriends = useMemo(() => {
     return friends ? friends.filter((friend) => !members.includes(friend._id)) : [];
-  }, [members.length, friends?.length]);
+  }, [members, friends]); // Include `members` and `friends` in the dependency array
 
   const handleSubmit = async (value: z.infer<typeof createGroupFormSchema>) => {
     try {
@@ -127,7 +127,6 @@ const CreateGroupDialog = () => {
                     </DropdownMenu>
                   </FormControl>
                   <FormMessage />
-
                 </FormItem>
               )}
             />
@@ -156,13 +155,13 @@ const CreateGroupDialog = () => {
                   ))}
               </Card>
             ) : null}
-            <DialogFooter >
-                <Button variant="default" type="submit" disabled={pending} className="w-full">
-                  Create Group
-                </Button>
-                <Button variant="outline" disabled={pending} className="w-full">
-                  Cancel
-                </Button>
+            <DialogFooter>
+              <Button variant="default" type="submit" disabled={pending} className="w-full">
+                Create Group
+              </Button>
+              <Button variant="outline" disabled={pending} className="w-full">
+                Cancel
+              </Button>
             </DialogFooter>
           </form>
         </Form>

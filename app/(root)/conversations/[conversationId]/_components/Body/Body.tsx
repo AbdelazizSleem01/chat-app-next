@@ -8,12 +8,13 @@ import Message from './Message'
 import { useMutationState } from '@/hooks/UseMutationState'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
+type Member = {
+  lastSeenMessageId?: Id<"messages">;
+  username: string;
+}
+
 type Props = {
-  members: {
-    lastSeenMessageId?: Id<"messages">;
-    username: string;
-    [key: string]: any;
-  }[];
+  members: Member[];
 }
 
 const Body = ({ members }: Props) => {

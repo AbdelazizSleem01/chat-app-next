@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { DropdownMenuTrigger, DropdownMenu, DropdownMenuContent, DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
-import { CircleArrowLeft, Settings, User } from 'lucide-react'
+import { CircleArrowLeft, Settings } from 'lucide-react' // Removed User
 import Link from 'next/link'
 import React from 'react'
 
@@ -20,8 +20,8 @@ type Props = {
 const Header = ({ imageUrl, name, options }: Props) => {
     return (
         <div className='flex'>
-            <Card className='w-full relative flex items-center justify-between  p-2 rounded-lg'>
-                <div className='flex items-center  gap-2'>
+            <Card className='w-full relative flex items-center justify-between p-2 rounded-lg'>
+                <div className='flex items-center gap-2'>
                     <Link href={"/conversations"} className='block lg:hidden'>
                         <CircleArrowLeft />
                     </Link>
@@ -56,8 +56,7 @@ const Header = ({ imageUrl, name, options }: Props) => {
                                     })}
                                 </DropdownMenuContent>
                             </DropdownMenu>
-                            : <>
-                            </>
+                            : null
                         }
                     </div>
                 </div>
@@ -66,4 +65,4 @@ const Header = ({ imageUrl, name, options }: Props) => {
     )
 }
 
-export default Header
+export default Header;

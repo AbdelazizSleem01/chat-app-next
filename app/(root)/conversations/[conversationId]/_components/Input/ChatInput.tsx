@@ -22,7 +22,7 @@ const chatMessageSchema = z.object({
 });
 
 const ChatInput = () => {
-  const textAreaRef = useRef<HTMLTextAreaElement | null>(null);
+  const textAreaRef = useRef<HTMLTextAreaElement | null>(null); // Keep the ref
 
   const { conversationId } = useConversation();
   const { mutate: createMessage, pending } = useMutationState(api.message.create);
@@ -40,6 +40,7 @@ const ChatInput = () => {
         content: [values.content],
       });
       form.reset();
+      textAreaRef.current?.focus(); // Optionally focus the textarea after sending
     } catch (error) {
       toast.error(error instanceof ConvexError ? error.data : "Unexpected error");
     }
@@ -60,6 +61,7 @@ const ChatInput = () => {
                 <FormItem className="h-full w-full">
                   <FormControl>
                     <TextareaAutosize
+                      ref={textAreaRef} // Attach the ref here
                       onKeyDown={async (e) => {
                         if (e.key === "Enter" && !e.shiftKey) {
                           e.preventDefault();

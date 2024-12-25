@@ -5,7 +5,6 @@ import { api } from '@/convex/_generated/api';
 import { Id } from '@/convex/_generated/dataModel'
 import { useMutationState } from '@/hooks/UseMutationState';
 import { AlertDialogCancel } from '@radix-ui/react-alert-dialog';
-import { error } from 'console';
 import { ConvexError } from 'convex/values';
 import React, { Dispatch, SetStateAction } from 'react'
 import { toast } from 'sonner';
@@ -17,7 +16,6 @@ type Props = {
 }
 
 const DeleteGroupDialog = ({ conversationId, open, setOpen }: Props) => {
-
     const { mutate: deleteGroup, pending } = useMutationState(api.conversation.remove)
 
     const handleRemoveGroup = async () => {
@@ -29,26 +27,25 @@ const DeleteGroupDialog = ({ conversationId, open, setOpen }: Props) => {
             })
     }
 
-
     return (
-        <AlertDialog open={open} onOpenChange={setOpen} >
+        <AlertDialog open={open} onOpenChange={setOpen}>
             <AlertDialogContent className='bg-white'>
                 <AlertDialogHeader>
                     <AlertDialogTitle>
-                        Are You Sure ?
+                        Are You Sure?
                     </AlertDialogTitle>
                     <AlertDialogDescription>
                         This action cannot be undone.
                         All messages will be deleted and
-                        you will be not able to messages this group
+                        you will not be able to message this group.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter className='w-full block'>
                     <AlertDialogAction onClick={handleRemoveGroup} disabled={pending} className='w-full flex items-center justify-center'>
                         Delete
                     </AlertDialogAction>
-                    <AlertDialogCancel disabled={pending} className='w-full  my-3'>
-                        <Button className='w-full ' variant={"outline"}>
+                    <AlertDialogCancel disabled={pending} className='w-full my-3'>
+                        <Button className='w-full' variant={"outline"}>
                             Cancel
                         </Button>
                     </AlertDialogCancel>
@@ -58,4 +55,4 @@ const DeleteGroupDialog = ({ conversationId, open, setOpen }: Props) => {
     )
 }
 
-export default DeleteGroupDialog
+export default DeleteGroupDialog;
