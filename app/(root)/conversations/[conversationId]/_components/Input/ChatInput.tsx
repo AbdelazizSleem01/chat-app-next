@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { z } from "zod";
 import TextareaAutosize from "react-textarea-autosize";
 import { Button } from "@/components/ui/button";
+import { mergeRefs }from "react-merge-refs";
 
 const chatMessageSchema = z.object({
   content: z.string().min(1, {
@@ -61,7 +62,7 @@ const ChatInput = () => {
                 <FormItem className="h-full w-full">
                   <FormControl>
                     <TextareaAutosize
-                      ref={textAreaRef} // Attach the ref here
+                      ref={mergeRefs([field.ref, textAreaRef])} // Use mergeRefs to combine refs
                       onKeyDown={async (e) => {
                         if (e.key === "Enter" && !e.shiftKey) {
                           e.preventDefault();
@@ -70,7 +71,10 @@ const ChatInput = () => {
                       }}
                       rows={1}
                       maxRows={3}
-                      {...field}
+                      name={field.name} // Pass individual properties
+                      value={field.value} // from `field`
+                      onChange={field.onChange}
+                      onBlur={field.onBlur}
                       placeholder="Enter a message..."
                       className="min-h-full w-full resize-none border-0 outline-0 bg-card text-card-foreground placeholder:text-muted-foreground p-1.5"
                     />
