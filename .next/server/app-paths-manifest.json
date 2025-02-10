@@ -1,6 +1,1 @@
-{
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/(root)/friends/page": "app/(root)/friends/page.js",
-  "/(root)/conversations/page": "app/(root)/conversations/page.js",
-  "/(root)/conversations/[conversationId]/page": "app/(root)/conversations/[conversationId]/page.js"
-}
+{}

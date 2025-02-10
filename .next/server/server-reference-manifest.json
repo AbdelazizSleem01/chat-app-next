@@ -1,27 +1,5 @@
 {
-  "node": {
-    "7f50c1d961f83d53ee3b4b8b4c68078e75adffe813": {
-      "workers": {
-        "app/(root)/conversations/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22E%3A%5C%5CChat-app%5C%5Cchat-app%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Cserver-actions.js%22%2C%5B%5B%227f50c1d961f83d53ee3b4b8b4c68078e75adffe813%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        },
-        "app/(root)/conversations/[conversationId]/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22E%3A%5C%5CChat-app%5C%5Cchat-app%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Cserver-actions.js%22%2C%5B%5B%227f50c1d961f83d53ee3b4b8b4c68078e75adffe813%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        },
-        "app/(root)/friends/page": {
-          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22E%3A%5C%5CChat-app%5C%5Cchat-app%5C%5Cnode_modules%5C%5C%40clerk%5C%5Cnextjs%5C%5Cdist%5C%5Cesm%5C%5Capp-router%5C%5Cserver-actions.js%22%2C%5B%5B%227f50c1d961f83d53ee3b4b8b4c68078e75adffe813%22%2C%22invalidateCacheAction%22%5D%5D%5D%5D&__client_imported__=true!",
-          "async": false
-        }
-      },
-      "layer": {
-        "app/(root)/conversations/page": "action-browser",
-        "app/(root)/conversations/[conversationId]/page": "action-browser",
-        "app/(root)/friends/page": "action-browser"
-      }
-    }
-  },
+  "node": {},
   "edge": {},
   "encryptionKey": "97xgeYFYNhgzePHTPW3EBRtsqOGbNvT5cApo+jkPiYI="
 }
