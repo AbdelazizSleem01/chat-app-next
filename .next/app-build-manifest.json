@@ -71,13 +71,6 @@
       "static/chunks/737-bba054263feafa0f.js",
       "static/chunks/app/(root)/conversations/layout-dbfae814d6434500.js"
     ],
-    "/(root)/conversations/page": [
-      "static/chunks/webpack-6ee05e45ddc7fc36.js",
-      "static/chunks/4bd1b696-fabe61bfd1c3c268.js",
-      "static/chunks/517-bd970a359db97a52.js",
-      "static/chunks/main-app-29791dfa30d616d0.js",
-      "static/chunks/app/(root)/conversations/page-3505db7a7af17e23.js"
-    ],
     "/(root)/conversations/[conversationId]/error": [
       "static/chunks/webpack-6ee05e45ddc7fc36.js",
       "static/chunks/4bd1b696-fabe61bfd1c3c268.js",
@@ -100,6 +93,13 @@
       "static/chunks/651-2d48e6562e342a25.js",
       "static/chunks/873-2e82af175cf8d8ff.js",
       "static/chunks/app/(root)/conversations/[conversationId]/page-321974a8a64363ed.js"
+    ],
+    "/(root)/conversations/page": [
+      "static/chunks/webpack-6ee05e45ddc7fc36.js",
+      "static/chunks/4bd1b696-fabe61bfd1c3c268.js",
+      "static/chunks/517-bd970a359db97a52.js",
+      "static/chunks/main-app-29791dfa30d616d0.js",
+      "static/chunks/app/(root)/conversations/page-3505db7a7af17e23.js"
     ]
   }
 }
