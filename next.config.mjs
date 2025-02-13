@@ -1,14 +1,24 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // Redirects configuration
     async redirects() {
-        return [
-            {
-                source: '/',
-                destination: '/conversations',
-                permanent: true,
-            },
-        ];
+      return [
+        {
+          source: '/',
+          destination: '/conversations',
+          permanent: true,
+        },
+      ];
     },
-};
-
-export default nextConfig;
+  
+    output: 'standalone',
+  
+    reactStrictMode: true,
+  
+    experimental: {
+      serverActions: true, 
+      serverComponentsExternalPackages: ['convex'], 
+    },
+  };
+  
+  export default nextConfig;

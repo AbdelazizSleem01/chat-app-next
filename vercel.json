@@ -1,9 +1,23 @@
 {
-    "build": {
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "outputDirectory": ".next"
+  "version": 2,
+  "builds": [
+    {
+      "src": "next.config.js",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ],
+  "build": {
+    "env": {
+      "NODE_ENV": "production",
+      "NEXT_PUBLIC_CONVEX_URL": "https://grateful-sturgeon-755.convex.cloud",
+      "CONVEX_DEPLOYMENT_KEY": "dev:grateful-sturgeon-755", 
+      "CONVEX_TMPDIR": "./tmp" 
+    }
   }
-  
+}

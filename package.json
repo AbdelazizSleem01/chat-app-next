@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run clean && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "clean": "rm -rf .next/ && rm -rf node_modules/.cache/"
+
   },
   "dependencies": {
     "@clerk/nextjs": "^5.7.5",
