@@ -14,9 +14,7 @@ const nextConfig = {
   reactStrictMode: true,
 
   experimental: {
-   
-    serverActions: {}, 
-
+  
     serverExternalPackages: ['convex'],
   },
 };
