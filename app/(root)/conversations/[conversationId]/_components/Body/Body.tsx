@@ -10,7 +10,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 
 type Member = {
   lastSeenMessageId?: Id<"messages">;
-  username: string;
+  username: string | undefined; // Allow undefined username
 };
 
 type Props = {
@@ -33,7 +33,7 @@ const Body = ({ members }: Props) => {
         messageId: messages[0].message._id,
       });
     }
-  }, [messages?.length, conversationId, markRead]);
+  }, [messages, conversationId, markRead]);
 
   const formatSeenBy = (names: string[]) => {
     switch (names.length) {
@@ -43,20 +43,18 @@ const Body = ({ members }: Props) => {
         return <p className="text-muted-foreground text-sm text-right">{`Seen by ${names[0]} and ${names[1]}`}</p>;
       default:
         return (
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                <p className="text-muted-foreground text-sm text-right">{`Seen by ${names[0]}, ${names[1]}, and ${names.length - 2} more`}</p>
-              </TooltipTrigger>
-              <TooltipContent>
-                <ul>
-                  {names.map((name, index) => (
-                    <li key={index}>{name}</li>
-                  ))}
-                </ul>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <p className="text-muted-foreground text-sm text-right">{`Seen by ${names[0]}, ${names[1]}, and ${names.length - 2} more`}</p>
+            </TooltipTrigger>
+            <TooltipContent>
+              <ul>
+                {names.map((name, index) => (
+                  <li key={index}>{name}</li>
+                ))}
+              </ul>
+            </TooltipContent>
+          </Tooltip>
         );
     }
   };
@@ -64,35 +62,47 @@ const Body = ({ members }: Props) => {
   const getSeenMessage = (messageId: Id<"messages">) => {
     const seenUsers = members
       .filter((member) => member.lastSeenMessageId === messageId)
-      .map((user) => user.username?.split(" ")[0] || "Unknown User"); // Provide fallback value
+      .map((user) => user.username?.split(" ")[0] || "Unknown User"); // Fallback for undefined username
 
     if (seenUsers.length === 0) return undefined;
 
     return formatSeenBy(seenUsers);
   };
 
-  return (
-    <div className="flex-1 w-full flex overflow-y-scroll flex-col-reverse gap-2 p-3 no-scrollbar">
-      {messages?.map(({ message, senderImage, senderName, isCurrentUser }, index) => {
-        const lastByUser =
-          messages[index - 1]?.message.senderId === messages[index].message.senderId;
-        const seenMessage = isCurrentUser ? getSeenMessage(message._id) : undefined;
+  if (messages === undefined) {
+    return <div>Loading messages...</div>;
+  }
 
-        return (
-          <Message
-            key={message._id}
-            content={message.content}
-            senderImage={senderImage}
-            senderName={senderName || "Unknown Sender"} // Provide fallback for senderName
-            fromCurrentUser={isCurrentUser}
-            lastByUser={lastByUser}
-            createdAt={message._creationTime}
-            seen={seenMessage}
-            type={message.type}
-          />
-        );
-      })}
-    </div>
+  if (messages === null) {
+    return <div>Failed to load messages.</div>;
+  }
+
+  return (
+    <TooltipProvider>
+      <div className="flex-1 w-full flex overflow-y-scroll flex-col-reverse gap-2 p-3 no-scrollbar">
+        {messages.map(({ message, senderImage, senderName, isCurrentUser }, index) => {
+          const lastByUser =
+            messages[index - 1]?.message.senderId === messages[index].message.senderId;
+
+          // Calculate seenMessage outside of useMemo
+          const seenMessage = isCurrentUser ? getSeenMessage(message._id) : undefined;
+
+          return (
+            <Message
+              key={message._id}
+              content={message.content}
+              senderImage={senderImage}
+              senderName={senderName || "Unknown Sender"}
+              fromCurrentUser={isCurrentUser}
+              lastByUser={lastByUser}
+              createdAt={message._creationTime}
+              seen={seenMessage}
+              type={message.type}
+            />
+          );
+        })}
+      </div>
+    </TooltipProvider>
   );
 };
 
