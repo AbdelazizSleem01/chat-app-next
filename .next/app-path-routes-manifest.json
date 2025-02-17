@@ -1,1 +1,1 @@
-{"/_not-found/page":"/_not-found","/favicon.ico/route":"/favicon.ico","/page":"/","/(root)/page":"/","/(root)/friends/page":"/friends","/(root)/conversations/page":"/conversations","/(root)/conversations/[conversationId]/page":"/conversations/[conversationId]"}
+{"/favicon.ico/route":"/favicon.ico","/_not-found/page":"/_not-found","/page":"/","/(root)/page":"/","/(root)/friends/page":"/friends","/(root)/conversations/[conversationId]/page":"/conversations/[conversationId]","/(root)/conversations/page":"/conversations"}
